@@ -19,7 +19,7 @@
             background-color: #000000; 
         }
 
-       
+        /* Iframe aplikasi */
         iframe { 
             width: 100%; 
             height: 100%; 
@@ -80,7 +80,7 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center; 
+            justify-content: center;
             gap: 10px;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
@@ -185,7 +185,7 @@
         <h1>Selamat Datang Di Project<br>WebApp Rumah Makan</h1>
         
         <div class="button-group">
-            <button class="btn" onclick="tutupWelcomeScreen()">
+            <button class="btn" onclick="bukaWebUtama()">
                 <span class="material-symbols-outlined">restaurant_menu</span>
                 Buka Webnya
             </button>
@@ -195,10 +195,10 @@
                 Info & Pemesanan
             </a>
 
-            <a href="https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec?page=admin" target="_blank" class="btn">
+            <button class="btn" onclick="bukaDashboardAdmin()">
                 <span class="material-symbols-outlined">admin_panel_settings</span>
                 Dashboard Admin
-            </a>
+            </button>
         </div>
 
         <div class="tech-section">
@@ -244,9 +244,11 @@
         </div>
     </div>
 
-    <iframe src="https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec"></iframe>
+    <iframe id="web-app-frame" src="https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec"></iframe>
 
     <script>
+        const iframe = document.getElementById('web-app-frame');
+
         function tutupWelcomeScreen() {
             const overlay = document.getElementById('welcome-overlay');
             overlay.style.opacity = '0'; 
@@ -254,6 +256,17 @@
             setTimeout(() => {
                 overlay.style.display = 'none';
             }, 500);
+        }
+
+        // Aksi ketika tombol Buka Web Utama diklik
+        function bukaWebUtama() {
+            iframe.src = "https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec";
+            tutupWelcomeScreen();
+        }
+
+        function bukaDashboardAdmin() {
+            iframe.src = "https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec?page=admin";
+            tutupWelcomeScreen();
         }
     </script>
 
