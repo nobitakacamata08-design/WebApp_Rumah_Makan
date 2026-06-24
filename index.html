@@ -3,272 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebApp RM Versi 1.0</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
-
+    <title>WebApp Sudah Terjual</title>
     <style>
-        /* Pengaturan Dasar */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
-            overflow: hidden; 
-            font-family: 'Poppins', sans-serif;
-            background-color: #000000; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Iframe aplikasi */
-        iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-            display: block;
-        }
-
-        /* Desain Layar Beranda (Welcome Screen) */
-        #welcome-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #0a0a0a; 
+        body {
+            background: #f4f7f6;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             text-align: center;
-            padding: 50px 20px;
-            box-sizing: border-box;
-            overflow-y: auto; 
+            max-width: 450px;
+            width: 90%;
         }
 
-        /* Judul Utama */
-        #welcome-overlay h1 {
-            color: #ffffff;
-            font-size: 2.5rem;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
-        }
-
-        /* Container untuk Tombol Utama */
-        .button-group {
+        .animation-container {
+            margin-bottom: 20px;
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 50px;
-            width: 100%;
-            max-width: 900px;
+            align-items: center;
+            min-height: 120px;
         }
 
-        /* Desain Tombol Gradien Merah */
-        .btn {
-            background: linear-gradient(135deg, #d32f2f 0%, #ff5252 100%);
-            color: #ffffff;
-            border: none;
-            padding: 15px 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+        .animated-icon {
+            width: 100px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .badge {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 8px 16px;
             border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            min-width: 250px; 
-            box-sizing: border-box;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.7);
-        }
-
-        /* ----- SECTION TEKNOLOGI PENGEMBANGAN ----- */
-        .tech-section {
-            width: 100%;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            box-sizing: border-box;
-        }
-
-        .tech-section h2 {
-            color: #ff5252;
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
 
-        /* Grid Responsif untuk List Teknologi */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: left;
+        h1 {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
         }
 
-        /* Item Individual */
-        .tech-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #d32f2f;
-            transition: transform 0.2s;
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1rem;
         }
 
-        .tech-item:hover {
-            transform: scale(1.02);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .tech-item .material-symbols-outlined {
-            color: #ff5252;
-            font-size: 28px;
-        }
-
-        .tech-text {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-            font-weight: 400;
-            line-height: 1.3;
-        }
-
-        .tech-text strong {
+        .btn-kontak {
+            display: inline-block;
+            background-color: #d32f2f;
             color: #ffffff;
-            display: block;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
             font-weight: 600;
-            margin-bottom: 3px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
         }
 
-        /* Responsif untuk Layar HP */
-        @media (max-width: 768px) {
-            #welcome-overlay { padding: 30px 15px; }
-            #welcome-overlay h1 { font-size: 1.8rem; }
-            
-            .button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn { 
-                width: 100%; 
-                max-width: 320px; 
-            }
-            
-            .tech-grid { grid-template-columns: 1fr; }
-            .tech-section { padding: 20px 15px; }
-            .tech-section h2 { font-size: 1.2rem; }
+        .btn-kontak:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <div id="welcome-overlay">
-        <h1>Selamat Datang Di Project<br>WebApp Rumah Makan</h1>
+    <div class="container">
         
-        <div class="button-group">
-            <button class="btn" onclick="bukaWebUtama()">
-                <span class="material-symbols-outlined">restaurant_menu</span>
-                Buka Webnya
-            </button>
-
-            <a href="https://wa.me/6281311778907" target="_blank" class="btn">
-                <span class="material-symbols-outlined">support_agent</span>
-                Info & Pemesanan
-            </a>
-
-            <button class="btn" onclick="bukaDashboardAdmin()">
-                <span class="material-symbols-outlined">admin_panel_settings</span>
-                Dashboard Admin
-            </button>
+        <div class="animation-container" id="icon-animasi">
+            <img src="https://i.ibb.co.com/6J8qPn3c/strategic-alliance-18641732.gif" alt="Icon WebApp" class="animated-icon">
         </div>
 
-        <div class="tech-section">
-            <h2>Teknologi Pengembangan</h2>
-            <div class="tech-grid">
-                
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">code_blocks</span>
-                    <div class="tech-text"><strong>Kode GS & JS</strong>Google Apps Script & JavaScript</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">cloud</span>
-                    <div class="tech-text"><strong>File Storage</strong>Terintegrasi Google Drive</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">public</span>
-                    <div class="tech-text"><strong>GitHub Pages</strong>Deploy Front-End Cepat & Aman</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">money_off</span>
-                    <div class="tech-text"><strong>0 Biaya Hosting</strong>Infrastruktur tanpa biaya server</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">add_to_drive</span>
-                    <div class="tech-text"><strong>Google Drive Custom</strong>Mendukung penyimpanan custom</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">domain</span>
-                    <div class="tech-text"><strong>Domain Custom</strong>Siap dihubungkan ke domain Anda</div>
-                </div>
-
-                <div class="tech-item">
-                    <span class="material-symbols-outlined">manage_search</span>
-                    <div class="tech-text"><strong>Search Engine</strong>Terindeks di mesin pencari</div>
-                </div>
-
-            </div>
-        </div>
+        <div class="badge">Sudah Terjual</div>
+        
+        <h1>Terima Kasih</h1>
+        <p>Terima kasih banyak atas kunjungan Anda. WebApp ini telah resmi terjual dan tidak lagi tersedia.</p>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 25px;">
+        
+        <p style="font-size: 0.95rem; margin-bottom: 15px; color: #444;">
+            Info Pemesanan Silahkan Hubungi Kontak
+        </p>
+        
+        <a href="https://wa.me/628xxxxxxxxxx" class="btn-kontak" target="_blank">
+            Hubungi Kontak
+        </a>
     </div>
-
-    <iframe id="web-app-frame" src="https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec"></iframe>
-
-    <script>
-        const iframe = document.getElementById('web-app-frame');
-
-        function tutupWelcomeScreen() {
-            const overlay = document.getElementById('welcome-overlay');
-            overlay.style.opacity = '0'; 
-            
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
-        }
-
-        // Aksi ketika tombol Buka Web Utama diklik
-        function bukaWebUtama() {
-            iframe.src = "https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec";
-            tutupWelcomeScreen();
-        }
-
-        function bukaDashboardAdmin() {
-            iframe.src = "https://script.google.com/macros/s/AKfycbw872-HyEwO03Yfeo0zSx59O8DVXaM44c9v6Kzs1yGBD5wu--1qf8HP5Y-BI_Iys1h7xw/exec?page=admin";
-            tutupWelcomeScreen();
-        }
-    </script>
 
 </body>
 </html>
